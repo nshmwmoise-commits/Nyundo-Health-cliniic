@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Currency Details</title>
+
+<style>
+
+/* ===== DARK ONLY PAGE ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+    url("istockphoto-460325179-1024x1024.jpg") center/cover no-repeat;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.nav{
+      padding:30px;
+       background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+/* ===== CARD ===== */
+.card {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 25px;
+  border-radius: 15px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+/* ===== RATE TEXT ===== */
+#rate {
+  font-size: 28px;
+  margin: 20px 0;
+  color: #00ff99;
+}
+
+/* ===== BUTTON ===== */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: #00b894;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #00a383;
+}
+
+</style>
+</head>
+
+<body>
+   <nav>
+                  
+  </nav>
+
+<div class="header">
+  💱 Currency Exchange Details
+</div>
+
+<div class="card">
+  <h2>USD → RWF</h2>
+
+  <div id="rate">Loading...</div>
+
+  <button onclick="getRate()">Refresh Rate</button>
+</div>
+
+<script>
+
+/* ===== FAKE RATE FUNCTION ===== */
+function getRate() {
+  let rate = (1300 + Math.random()*90).toFixed(2);
+  document.getElementById("rate").innerText =
+    "1 USD = " + rate + " RWF";
+}
+
+getRate();
+
+</script>
+
+</body>
+</html>

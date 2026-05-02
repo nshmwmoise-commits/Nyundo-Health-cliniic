@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transaction History</title>
+  <style>
+    body { font-family: Arial;
+         background-image: url("exchange.jpg");
+        background-size: cover;       /* igatwikira page yose */
+  background-position: center;  /* igahora hagati */
+     }
+    table {
+      width:100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding:10px;
+      border:1px solid #ddd;
+    }
+    th {
+      background:#333;
+      color:white;
+    }
+    .nav{
+      padding:30px;
+       background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    
+                   <button>
+                    <i>
+                    <a href="full converter page.html">CONVERTER </a>
+                   </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </i>
+                   <i>
+                <button><a href="Details.html">CCURRENCY DETAILS 
+                     </a>
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     </i>
+                     <i>
+                    <button><a href="history.html">HISTORY 
+                      </a>
+                      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </i>
+                      <i>
+                      <button> 
+                     <a href="settings.html">SETTINGS</a>
+                      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</i>
+
+</nav>
+<h2>Exchange History</h2>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+  </tr>
+  <tbody id="historyTable"></tbody>
+</table>
+
+<script>
+let history = [
+  {date:"2026-05-01", from:"USD", to:"RWF", amount:100},
+  {date:"2026-05-02", from:"EUR", to:"USD", amount:50}
+];
+
+function loadHistory() {
+  let table = document.getElementById("historyTable");
+  history.forEach(item => {
+    let row = `<tr>
+      <td>${item.date}</td>
+      <td>${item.from}</td>
+      <td>${item.to}</td>
+      <td>${item.amount}</td>
+    </tr>`;
+    table.innerHTML += row;
+  });
+}
+
+loadHistory();
+
+function saveTransaction(from, to, amount) {
+  let history = JSON.parse(localStorage.getItem("history")) || [];
+
+  let transaction = {
+    date: new Date().toLocaleString(),
+    from: from,
+    to: to,
+    amount: amount
+  };
+
+  history.push(transaction);
+
+  localStorage.setItem("history", JSON.stringify(history));
+}
+
+</script>
+
+</body>
+</html>
