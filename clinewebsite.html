@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nyundo Clinic Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* HEADER */
+.header {
+    background: #6a2c91;
+    padding: 30px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    position: relative;
+    color: black;
+}
+
+/* LOGO AREA */
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: 120px;
+    height: 120px;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 30%;
+    background: #6faa44;
+    padding: 30px;
+}
+.sidebar div {
+    margin: 25px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+.sidebar i {
+    margin-right: 10px;
+}
+
+/* MAIN */
+.main {
+    width: 70%;
+    background: #ddd;
+    padding: 30px;
+}
+
+input[type="text"] {
+    display: block;
+    width: 60%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #bcc6cf;
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-weight: bold;
+}
+.queue {
+    background: #bfc9d3;
+    padding: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <!-- LOGO INSERTED HERE -->
+    <div class="logo">
+        <svg viewBox="0 0 300 300" width="120" height="120">
+
+            <!-- Background -->
+            <circle cx="150" cy="150" r="140" fill="#6a2c91"/>
+
+            <!-- Inner circle -->
+            <circle cx="150" cy="150" r="120" fill="white"/>
+
+            <!-- Medical cross -->
+            <rect x="135" y="70" width="30" height="160" fill="#2e7d32"/>
+            <rect x="80" y="125" width="140" height="30" fill="#2e7d32"/>
+
+            <!-- Stethoscope -->
+            <path d="M110 190 C110 230, 190 230, 190 190" 
+                  stroke="#6a2c91" stroke-width="6" fill="none"/>
+
+            <circle cx="110" cy="190" r="8" fill="#6a2c91"/>
+            <circle cx="190" cy="190" r="8" fill="#6a2c91"/>
+
+        </svg>
+    </div>
+
+    Nyundo Clinic Dashboard
+</div>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div><i class="fa-solid fa-user-check"></i> Check-in</div>
+    <div><i class="fa-solid fa-users"></i> Patients</div>
+    <div><i class="fa-solid fa-calendar-days"></i> Appointments</div>
+    <div><i class="fa-solid fa-folder-open"></i> Records</div>
+    <div><i class="fa-solid fa-gear"></i> Settings</div>
+
+    <div style="margin-top:40px;">
+        <i class="fa-solid fa-wifi"></i> Wi-Fi On
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+    <h2 style="text-align:center;">
+        <i class="fa-solid fa-notes-medical"></i> Patient Check-in
+    </h2>
+
+    <label><i class="fa-solid fa-user"></i> Names:</label>
+    <input type="text" id="name" placeholder="Enter name">
+
+    <label><i class="fa-solid fa-cake-candles"></i> Age:</label>
+    <input type="text" id="age" placeholder="dd/mm/yyyy">
+
+    <label><i class="fa-solid fa-phone"></i> Phone:</label>
+    <input type="text" id="phone" placeholder="Phone number">
+
+    <p>
+        <input type="radio" name="type" checked> New
+        <input type="radio" name="type"> Returning
+    </p>
+
+    <button onclick="addPatient()">
+        <i class="fa-solid fa-paper-plane"></i> SUBMIT
+    </button>
+
+    <button onclick="clearForm()">
+        <i class="fa-solid fa-broom"></i> CLEAR
+    </button>
+
+    <div class="queue">
+        <i class="fa-solid fa-list"></i> Current Queue
+        <div id="queueList"></div>
+    </div>
+</div>
+
+</div>
+
+<script>
+let count = 1;
+
+function addPatient() {
+    let name = document.getElementById("name").value;
+    if(name === "") {
+        alert("Enter patient name");
+        return;
+    }
+
+    let queue = document.getElementById("queueList");
+    let number = String(count).padStart(3, '0');
+
+    let item = document.createElement("div");
+    item.innerHTML = number + " - " + name + " (waiting)";
+
+    queue.appendChild(item);
+
+    count++;
+    clearForm();
+}
+
+function clearForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("phone").value = "";
+}
+</script>
+
+</body>
+</html>
